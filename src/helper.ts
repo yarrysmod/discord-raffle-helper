@@ -11,6 +11,11 @@ export class RaffleHelper {
     constructor(public participants: Participant[]) {
     }
 
+    /**
+     * populates the shuffled list based on the initialized participants.
+     *
+     * @see {@link https://bost.ocks.org/mike/shuffle/} for more details on the shuffle
+     */
     public populateShuffledList(): RaffleHelper {
         const shuffledList = [].concat(
             ...this.participants.map(
@@ -41,8 +46,8 @@ export class RaffleHelper {
             .slice(0, 3);
     }
 
-    getChancesOfWinning() {
-        let totalPushups = this.shuffledList.length;
+    public getChancesOfWinning(): string[] {
+        const totalPushups = this.shuffledList.length;
 
         return this.participants
             .filter(({name}) => !EXCLUDED_PARTICIPANTS.includes(name))
